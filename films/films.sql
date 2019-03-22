@@ -67,13 +67,22 @@ values ('film 8', '1989', 'italiana', 'fellini', 'storico');
 insert into films (titolo, anno_di_produzione,nazionalita, regista, genere)
 values ('film 9', '1945', 'italiana', 'leone', 'storico');
 insert into films (titolo, anno_di_produzione,nazionalita, regista, genere)
-values ('film 10', '2000', 'francese', 'leone', 'fantascienza');
-insert into films (titolo, anno_di_produzione,nazionalita, regista, genere)
-values ('film 11', '2000', 'giapponese', 'leone', 'fantascienza');
+values ('Casablanca', '1945', 'italiana', 'leone', 'storico');
 
-select nome from sale where citta = 'Pisa';
-select titolo from films where regista = 'Fellini' and anno_di_produzione > 1960;
-select titolo from films where anno_di_produzione > 1990 and genere = 'fantascienza' and (nazionalita = 'francese' or nazionalita = 'giapponese');
+insert into proiezioni (film_id, sala_id, incasso, data_proiezione)
+values (3, 2, 1000, '2004-12-25');
+insert into proiezioni (film_id, sala_id, incasso, data_proiezione)
+values (3, 2, 1000, '2004.12.25');
+insert into proiezioni (film_id, sala_id, incasso, data_proiezione)
+values (3, 2, 1000, '2017/12/25');
+insert into proiezioni (film_id, sala_id, incasso, data_proiezione)
+values (2, 1, 1000, '2004/12/25');
+
+select titolo from films where regista = (select regista from films where titolo = 'Casablanca');
+
+select films.titolo, films.genere from films, proiezioni where  proiezioni.film_id = films.id and data_proiezione = '2004-12-25';
+
+
 
 
 
